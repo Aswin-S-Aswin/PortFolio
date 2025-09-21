@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -8,7 +8,139 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css" />
+<style>
+:root {
+--bg: #faf8ff;
+--fg: #4a1a6b;
+--muted: #8b5a9f;
+--soft: #f0e8ff;
+--card: #ffffff;
+--line: #d4c5e8;
+--accent: #7c3aed;
+--accent-light: #a855f7;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+
+/* Header / Nav */
+.navbar { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; position: sticky; top: 0; background: rgba(250,248,255,0.9); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); z-index: 10; }
+.brand { font-weight: 800; letter-spacing: 0.4px; }
+.nav-links { list-style: none; display: flex; gap: 1rem; margin: 0; padding: 0; }
+.nav-links a { text-decoration: none; color: var(--fg); padding: 0.5rem 0.75rem; border-radius: 8px; transition: background .2s ease, color .2s ease; }
+.nav-links a:hover { background: var(--fg); color: var(--bg); }
+.nav-toggle { display: none; }
+
+/* Hero */
+.hero { position: relative; display: grid; grid-template-columns: 1fr; align-items: center; min-height: 70vh; padding: 4rem 1.25rem 2rem; overflow: hidden; background: linear-gradient(135deg, #faf8ff 0%, #f0e8ff 50%, #e8d5ff 100%); }
+.hero-bg { position: absolute; inset: 0; background-image: radial-gradient(circle at 20% 20%, var(--accent) 1px, transparent 1px), radial-gradient(circle at 80% 60%, var(--accent-light) 1px, transparent 1px); background-size: 18px 18px, 24px 24px; opacity: 0.15; }
+.hero-title { font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.1; margin: 0; }
+.tagline { font-weight: 600; margin: 0.75rem 0; color: var(--fg); }
+.bio { max-width: 65ch; margin: 0 auto 1.25rem; color: var(--muted); }
+.cta-group { display: flex; gap: 0.75rem; justify-content: center; }
+.btn { display: inline-block; padding: 0.7rem 1rem; border-radius: 10px; text-decoration: none; font-weight: 600; border: 1px solid var(--accent); color: var(--accent); background: transparent; transition: transform .1s ease, background .2s ease, color .2s ease; }
+.btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-light)); color: white; border: none; }
+.btn:hover { transform: translateY(-1px); }
+.btn.primary:hover { background: linear-gradient(135deg, var(--accent-light), var(--accent)); }
+
+/* Sections */
+.section { padding: 3rem 1.25rem; }
+.section-inner { max-width: 1000px; margin: 0 auto; }
+.section-title { font-size: clamp(1.4rem, 3vw, 2rem); margin: 0 0 1rem; }
+
+/* About */
+.about-card { display: grid; grid-template-columns: 120px 1fr; gap: 1rem; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1rem; }
+.headshot { width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, var(--soft), #e8d5ff); border: 2px solid var(--accent); }
+.about-text p { margin: 0; color: var(--fg); }
+
+/* Experience */
+.timeline { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--accent); padding-left: 1rem; display: grid; gap: 1rem; }
+.timeline li { padding-left: 0.25rem; }
+.timeline h3 { margin: 0 0 0.25rem; font-size: 1.05rem; }
+.timeline .meta { margin: 0; color: var(--muted); }
+
+/* Skills */
+.badges { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.badge { display: inline-block; padding: 0.5rem 0.75rem; border-radius: 999px; border: 1px solid var(--fg); background: var(--bg); color: var(--fg); font-weight: 700; transition: background .2s ease, color .2s ease; }
+.badge:hover { background: var(--fg); color: var(--bg); }
+
+/* Projects */
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+.project-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1rem; transition: box-shadow .2s ease, transform .2s ease; background-image: none; opacity: 1; }
+.project-card:hover { transform: translateY(-2px); box-shadow: 0 0 0 2px var(--accent), 0 8px 24px rgba(124,58,237,0.15); }
+.project-card h3 { margin: 0 0 0.25rem; }
+.project-card p { margin: 0; color: var(--muted); }
+
+/* Contact / Footer */
+.footer { background: var(--fg); color: var(--bg); padding: 2rem 1.25rem; border-top: 1px solid var(--line); }
+.footer-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+.contact-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem; }
+.contact-list li { display: flex; align-items: center; gap: 0.75rem; }
+.contact-icon { flex-shrink: 0; color: var(--bg); transition: transform .2s ease, color .2s ease; }
+.contact-list a { color: var(--bg); text-decoration: none; border-bottom: 1px solid transparent; transition: filter .2s ease, border-color .2s ease; }
+.contact-list a:hover { filter: brightness(1.2); border-color: var(--bg); }
+.contact-list li:hover .contact-icon { transform: scale(1.1); }
+
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.show { opacity: 1; transform: translateY(0); }
+
+/* Responsive */
+@media (max-width: 820px) {
+.nav-toggle { display: inline-flex; background: transparent; border: 1px solid var(--fg); border-radius: 8px; padding: 0.25rem 0.5rem; }
+.nav-links { display: none; position: absolute; right: 1rem; top: 58px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 0.5rem; flex-direction: column; }
+.nav-links.show { display: flex; }
+.about-card { grid-template-columns: 1fr; }
+.headshot { justify-self: center; }
+.hero { padding-top: 3rem; min-height: 60vh; }
+.footer-inner { flex-direction: column; gap: 0.5rem; }
+}
+
+/* Hero layout with left-side profile */
+.hero-grid { display: grid; grid-template-columns: 280px 1fr; gap: 1.5rem; align-items: center; max-width: 1000px; margin: 0 auto; position: relative; }
+.hero-photo { display: flex; justify-content: center; }
+.headshot.large { width: 220px; height: 220px; border-radius: 50%; background: linear-gradient(135deg, var(--soft), #e8d5ff); border: 3px solid var(--accent); }
+
+@media (max-width: 820px) {
+.hero-grid { grid-template-columns: 1fr; }
+.hero-photo { order: -1; margin-bottom: 0.5rem; }
+}
+
+/* Skills as box-shaped tiles */
+.badges { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.75rem; }
+.badge { display: flex; align-items: center; justify-content: center; padding: 1rem; border-radius: 8px; border: 1px solid var(--accent); background: var(--bg); color: var(--accent); font-weight: 700; min-height: 64px; box-shadow: 0 2px 0 rgba(124,58,237,0.1); }
+.badge:hover { background: linear-gradient(135deg, var(--accent), var(--accent-light)); color: white; transform: translateY(-2px); }
+
+/* Remove dotted background from project cards and improve contrast */
+.project-card { background-image: none !important; opacity: 1; }
+
+/* Mobile brand/logo improvements and nav toggle tuning */
+.brand-mark { display: none; font-weight: 900; letter-spacing: 1px; }
+@media (max-width: 820px) {
+.brand-full { display: none; }
+.brand-mark { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: var(--fg); color: var(--bg); }
+.navbar { gap: 0.5rem; }
+.nav-toggle { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 36px; border: 1px solid var(--fg); border-radius: 8px; color: var(--fg); }
+}
+
+/* Hamburger icon for mobile nav */
+.nav-toggle { background-image: url('assets/icons/burger.svg'); background-repeat: no-repeat; background-position: center; background-size: 22px 16px; font-size: 0; }
+@media (max-width: 820px) {
+.nav-toggle { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 36px; }
+}
+
+/* Make contact links black instead of white */
+.section .contact-list a { color: var(--fg) !important; border-bottom-color: transparent; }
+.section .contact-list a:hover { color: var(--fg); border-bottom-color: var(--fg); background: transparent; padding: 0.05rem 0; border-radius: 0; }
+.section .contact-icon { color: var(--fg) !important; }
+
+/* Achievements */
+.achievements-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+.achievement-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1rem; box-shadow: 0 2px 0 rgba(124,58,237,0.1); transition: transform .2s ease, box-shadow .2s ease; }
+.achievement-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,58,237,0.15); }
+.achievement-card h3 { margin: 0 0 0.25rem; font-size: 1.05rem; }
+.achievement-card p { margin: 0; color: var(--muted); }
+</style>
 </head>
 <body>
 <header class="site-header" id="home">
@@ -55,7 +187,9 @@
 <img src="baxira.tt-20231115-0003.jpg" alt="Aswin S profile picture" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
 </div>
 <div class="about-text">
-<p>I’m Aswin S, an anime lover and Machine Learning enthusiast with a passion for Python and Data Analysis. Currently pursuing B.Tech in Artificial Intelligence and Data Science (3rd year), with a focus on Machine Learning. Expected graduation in 2027. Outside academics, I enjoy playing football, which keeps me motivated and energetic.</p>
+<p>I'm Aswin S, an anime lover and Machine Learning enthusiast with a passion for Python and Data Analysis. Currently pursuing B.Tech in Artificial Intelligence and Data Science (3rd year), with a focus on Machine Learning. Expected graduation in 2027. Outside academics, I enjoy playing football, which keeps me motivated and energetic.
+  
+</p>
 </div>
 </div>
 </div>
@@ -65,14 +199,16 @@
 <div class="section-inner">
 <h2 class="section-title">Achievements</h2>
 <ul class="achievements-list reveal">
+
 <li class="achievement-card">
 <h3>SIH Hackathon Participant</h3>
 <p>Participated in Smart India Hackathon; collaborated on problem solving and prototyping.</p>
 </li>
 <li class="achievement-card">
-<h3>Public Chair – Rotaract Club</h3>
+<h3>Public Image Chair – Rotaract Club</h3>
 <p>Led public relations initiatives and event communications for the club.</p>
 </li>
+
 <li class="achievement-card">
 <h3>Department President</h3>
 <p>Elected student leader; coordinated activities and represented the department.</p>
@@ -82,7 +218,8 @@
 <li class="achievement-card">
 <h3>Web Application using React JS</h3>
 <p>Built a responsive web app with React components, hooks, and state management.</p>
-</li></ul>
+</li>
+</ul>
 </div>
 </section>
 <section id="experience" class="section">
@@ -171,18 +308,27 @@
 </div>
 </footer>
 
-<script src="script.js"></script>
+<script>
+// Mobile nav toggle
+const toggle = document.querySelector('.nav-toggle');
+const links = document.querySelector('.nav-links');
+if (toggle && links) {
+toggle.addEventListener('click', () => links.classList.toggle('show'));
+}
+
+// Year in footer
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+// Scroll reveal
+(function reveal(){
+const obs = new IntersectionObserver((entries) => {
+for (const entry of entries) {
+if (entry.isIntersecting) entry.target.classList.add('show');
+}
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+})();
+</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
