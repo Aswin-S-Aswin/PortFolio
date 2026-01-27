@@ -10,26 +10,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg-primary: #0a1929;
-  --bg-secondary: #112240;
-  --bg-card: #1a2744;
-  --bg-card-hover: #233554;
-  --text-primary: #e6f1ff;
-  --text-secondary: #a8b2d1;
-  --text-muted: #8892b0;
-  --accent-primary: #64ffda;
-  --accent-secondary: #57d1ff;
-  --accent-tertiary: #4dabf7;
-  --accent-glow: rgba(100, 255, 218, 0.2);
-  --gradient-1: linear-gradient(135deg, #64ffda 0%, #57d1ff 50%, #4dabf7 100%);
-  --gradient-2: linear-gradient(135deg, #4dabf7 0%, #64ffda 100%);
-  --border-color: rgba(100, 255, 218, 0.1);
-  --border-hover: rgba(100, 255, 218, 0.5);
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-card: #111111;
+  --bg-card-hover: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #d6d6d6;
+  --text-muted: #9a9a9a;
+  --accent-primary: #ffffff;
+  --accent-secondary: #e6e6e6;
+  --accent-tertiary: #bdbdbd;
+  --accent-glow: rgba(255, 255, 255, 0.2);
+  --gradient-1: linear-gradient(135deg, #ffffff 0%, #d6d6d6 50%, #9a9a9a 100%);
+  --gradient-2: linear-gradient(135deg, #d6d6d6 0%, #ffffff 100%);
+  --border-color: rgba(255, 255, 255, 0.12);
+  --border-hover: rgba(255, 255, 255, 0.5);
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.6);
-  --shadow-glow: 0 0 30px rgba(100, 255, 218, 0.3);
-  --shadow-blue: 0 0 20px rgba(77, 171, 247, 0.4);
+  --shadow-glow: 0 0 30px rgba(255, 255, 255, 0.25);
+  --shadow-blue: 0 0 20px rgba(255, 255, 255, 0.18);
 }
 
 * {
@@ -60,9 +60,9 @@ body::before {
   width: 100%;
   height: 100%;
   background: 
-    radial-gradient(circle at 20% 30%, rgba(100, 255, 218, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(77, 171, 247, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(87, 209, 255, 0.04) 0%, transparent 50%);
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
 }
@@ -77,7 +77,7 @@ body::before {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 2rem;
-  background: rgba(10, 25, 41, 0.95);
+  background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-color);
   z-index: 1000;
@@ -123,9 +123,9 @@ body::before {
 
 .nav-links a:hover {
   color: var(--accent-primary);
-  background: rgba(100, 255, 218, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(100, 255, 218, 0.2);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.12);
   border: 1px solid var(--border-hover);
 }
 
@@ -135,14 +135,15 @@ body::before {
   border: 1px solid var(--border-color);
   color: var(--text-primary);
   padding: 0.5rem;
-  border-radius: 999px;
+  border-radius: 10px;
   cursor: pointer;
   width: 40px;
   height: 40px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  background-image: url('assets/icons/burger.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22px 16px;
+  font-size: 0;
 }
 
 /* Hero Section - New Template */
@@ -163,7 +164,7 @@ body::before {
   right: 0;
   width: 60%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(100, 255, 218, 0.05) 0%, rgba(77, 171, 247, 0.08) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.06) 100%);
   clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
   z-index: 0;
 }
@@ -176,7 +177,7 @@ body::before {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 8rem 4rem 4rem;
+  padding: clamp(6rem, 10vw, 8rem) clamp(1.25rem, 4vw, 4rem) clamp(3rem, 6vw, 4rem);
   position: relative;
   z-index: 1;
 }
@@ -328,7 +329,7 @@ body::before {
 }
 
 .btn:not(.primary) {
-  background: rgba(100, 255, 218, 0.05);
+  background: rgba(255, 255, 255, 0.04);
   color: var(--accent-primary);
   border: 2px solid var(--border-color);
   backdrop-filter: blur(10px);
@@ -344,16 +345,16 @@ body::before {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: rgba(100, 255, 218, 0.2);
+  background: rgba(255, 255, 255, 0.14);
   transform: translate(-50%, -50%);
   transition: width 0.6s ease, height 0.6s ease;
 }
 
 .btn:not(.primary):hover {
-  background: rgba(100, 255, 218, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   border-color: var(--border-hover);
   transform: translateY(-3px);
-  box-shadow: var(--shadow-md), 0 0 20px rgba(100, 255, 218, 0.3);
+  box-shadow: var(--shadow-md), 0 0 20px rgba(255, 255, 255, 0.18);
   color: var(--accent-primary);
 }
 
@@ -365,13 +366,13 @@ body::before {
 /* Sections - New Template */
 .section {
   position: relative;
-  padding: 8rem 4rem;
+  padding: clamp(4rem, 7vw, 7rem) clamp(1.25rem, 4vw, 4rem);
   width: 100%;
   z-index: 1;
 }
 
 .section:nth-child(even) {
-  background: rgba(100, 255, 218, 0.02);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .section-inner {
@@ -503,7 +504,7 @@ body::before {
 .achievements-list {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 3rem;
   padding: 2rem 0;
 }
@@ -539,7 +540,7 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(100, 255, 218, 0.05), transparent);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent);
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: -1;
@@ -683,7 +684,7 @@ body::before {
   transform: translateY(-10px) translateX(5px);
   border-color: var(--accent-primary);
   box-shadow: var(--shadow-lg), var(--shadow-glow), var(--shadow-blue);
-  background: rgba(100, 255, 218, 0.05);
+  background: rgba(255, 255, 255, 0.04);
   color: var(--accent-primary);
   clip-path: polygon(0 0, 100% 0, 100% 90%, 98% 100%, 0 100%);
 }
@@ -695,7 +696,7 @@ body::before {
 /* Projects - New Template */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 3rem;
   padding: 2rem 0;
 }
@@ -734,7 +735,7 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(100, 255, 218, 0.03), transparent);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.02), transparent);
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: -1;
@@ -778,7 +779,7 @@ body::before {
 .contact-list {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 2rem;
   padding: 2rem 0;
   max-width: 100%;
@@ -805,7 +806,7 @@ body::before {
   border-color: var(--border-hover);
   border-left-color: var(--accent-primary);
   box-shadow: var(--shadow-lg), var(--shadow-glow), var(--shadow-blue);
-  background: rgba(100, 255, 218, 0.05);
+  background: rgba(255, 255, 255, 0.04);
   clip-path: polygon(0 0, 100% 0, 98% 100%, 0% 100%);
 }
 
@@ -1138,7 +1139,7 @@ body::before {
   }
 
   .badges {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 1rem;
   }
 
@@ -1275,7 +1276,7 @@ body::before {
       <span class="brand-full">Aswin S</span>
       <span class="brand-mark" aria-hidden="true">Aswin</span>
     </div>
-<button class="nav-toggle" aria-label="Toggle navigation">AS</button>
+<button class="nav-toggle" aria-label="Toggle navigation"></button>
 <ul class="nav-links">
 <li><a href="#home">Home</a></li>
 <li><a href="#about">About</a></li>
@@ -1378,7 +1379,7 @@ body::before {
         <span class="badge reveal">Java</span>
         <span class="badge reveal">MySQL</span>
         <span class="badge reveal">React JS</span>
-        <span class="badge reveal">Excel</span>
+        <span class="badge reveal">MS Excel</span>
 </div>
 </div>
 </section>
@@ -1432,7 +1433,9 @@ body::before {
 
 <footer class="footer" id="footer">
 <div class="footer-inner">
-    <p>&copy; <span id="year"></span> Aswin S. All rights reserved.</p>
+    <p>
+      <!-- &copy; <span id="year"></span> -->
+       For more detials contact me at anytime.</p>
 </div>
 </footer>
 
@@ -1474,13 +1477,13 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 window.addEventListener('scroll', () => {
   const navbar = document.querySelector('.navbar');
   if (window.scrollY > 50) {
-    navbar.style.background = 'rgba(10, 25, 41, 0.98)';
+    navbar.style.background = 'rgba(0, 0, 0, 0.98)';
     navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.8)';
-    navbar.style.borderBottom = '1px solid rgba(100, 255, 218, 0.15)';
+    navbar.style.borderBottom = '1px solid rgba(255, 255, 255, 0.15)';
   } else {
-    navbar.style.background = 'rgba(10, 25, 41, 0.95)';
+    navbar.style.background = 'rgba(0, 0, 0, 0.95)';
     navbar.style.boxShadow = 'none';
-    navbar.style.borderBottom = '1px solid rgba(100, 255, 218, 0.1)';
+    navbar.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
   }
 });
 </script>
