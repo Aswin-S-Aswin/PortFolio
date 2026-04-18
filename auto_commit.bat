@@ -1,11 +1,16 @@
 cd /d "C:\Users\S. ASWIN\Documents\Portfolio\Portfolio git"
 
+:: Pull latest changes
+git pull origin main --rebase
+
+:: Update streak file with timestamp
+echo Auto update on %date% %time% >> daily_log.txt
+
+:: Add changes
 git add .
 
-git diff --cached --quiet
-IF %ERRORLEVEL%==0 (
-    echo No changes to commit
-) ELSE (
-    git commit -m "Auto commit on %date% %time%"
-    git push origin main
-)
+:: Commit
+git commit -m "Daily streak commit on %date% %time%"
+
+:: Push to GitHub
+git push origin main
