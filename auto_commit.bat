@@ -1,7 +1,5 @@
 cd /d "C:\Users\S. ASWIN\Documents\Portfolio\Portfolio git"
 
-git pull origin main --rebase
-
 git add .
 
 git diff --cached --quiet
