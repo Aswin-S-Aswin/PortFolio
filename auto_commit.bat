@@ -14,3 +14,5 @@ git commit -m "Daily streak commit on %date% %time%"
 
 :: Push to GitHub
 git push origin main
+
+exit
