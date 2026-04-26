@@ -16,3 +16,4 @@ git commit -m "Daily streak commit on %date% %time%"
 git push origin main
 
 exit
+exit
