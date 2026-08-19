@@ -18,7 +18,10 @@
     // ── Speed table (ms per drop, per level) ─────────────────
     // Rule 16: L1=800, L2=700, L3=600... L10=150, beyond=100
     const SPEED_TABLE = [800, 700, 600, 500, 400, 350, 300, 250, 200, 150];
-    function getSpeed(lvl) { return SPEED_TABLE[Math.min(lvl - 1, SPEED_TABLE.length - 1)] || 100; }
+    function getSpeed(lvl) {
+        const idx = lvl - 1;
+        return idx < SPEED_TABLE.length ? SPEED_TABLE[idx] : 100;
+    }
 
     // ── Tetromino definitions (SRS spawn orientation) ─────────
     const TETROMINOES = {
@@ -343,7 +346,7 @@
             case 'KeyC':
             case 'ShiftLeft':
             case 'ShiftRight': e.preventDefault(); holdAction();    break;
-            case 'KeyP':       e.preventDefault(); tetrisPause();   break;
+            case 'KeyP':       e.preventDefault(); window.tetrisPause(); break;
         }
         render();
     });
@@ -477,7 +480,7 @@
             holdCtx.clearRect(0, 0, 80, 80);
         }
 
-        if (flashTimer > 0) flashTimer--;
+        // flashTimer is decremented in the game loop only (avoids double-step from keyboard render calls)
     }
 
     // ── Game loop ─────────────────────────────────────────────
@@ -491,6 +494,8 @@
             }
             lastDrop = ts;
         }
+        // Decrement flash timer once per animation frame (not per render call)
+        if (flashTimer > 0) flashTimer--;
         render();
         raf = requestAnimationFrame(loop);
     }
@@ -581,9 +586,9 @@
     };
 
     window.tetrisOverlayAction = function () {
-        if (gameState === 'over')   { saveScore();   }
-        else if (gameState === 'paused') { tetrisPause(); }
-        else                        { tetrisStart(); }
+        if (gameState === 'over')        { saveScore();            }
+        else if (gameState === 'paused') { window.tetrisPause();   }
+        else                             { window.tetrisStart();   }
     };
 
     // ── Leaderboard (Supabase Database + Local Storage Fallback) ──────
