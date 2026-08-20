@@ -1,4 +1,4 @@
-﻿:root {
+:root {
     --bg: #050508;
     --bg-2: #0c0c12;
     --bg-3: #12121a;
@@ -1670,5 +1670,90 @@ footer {
         flex-wrap: wrap;
         justify-content: center;
         min-width: unset;
+    }
+}
+
+/* ── HIRE ME BUTTON (hide on mobile nav) ─────────── */
+@media (max-width: 600px) {
+    .hire-me-btn {
+        display: none !important;
+    }
+}
+
+/* ── TETRIS MOBILE TOUCH D-PAD ───────────────────── */
+.tetris-touch-dpad {
+    display: none; /* shown only on mobile */
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    max-width: 320px;
+    margin-top: 4px;
+}
+
+.touch-row {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+}
+
+.touch-btn {
+    background: var(--surface-2);
+    border: 1px solid var(--border-2);
+    border-radius: var(--r);
+    color: var(--text);
+    font-size: 1rem;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: background 0.12s, transform 0.1s;
+    touch-action: manipulation;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0 16px;
+}
+
+.touch-btn:active {
+    background: var(--accent);
+    transform: scale(0.93);
+    border-color: var(--accent);
+}
+
+.touch-arrow {
+    width: 64px;
+    font-size: 1.3rem;
+    padding: 0;
+}
+
+.touch-wide {
+    flex: 1;
+    font-size: 0.88rem;
+}
+
+.touch-harddrop {
+    width: 100%;
+    background: rgba(124,111,247,0.15);
+    border-color: var(--accent);
+    color: var(--accent-2);
+    font-size: 0.9rem;
+}
+
+.touch-harddrop:active {
+    background: var(--accent);
+    color: white;
+}
+
+@media (max-width: 700px) {
+    .tetris-touch-dpad {
+        display: flex;
+    }
+    .tetris-keys-desktop {
+        display: none;
     }
 }

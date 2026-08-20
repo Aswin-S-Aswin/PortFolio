@@ -680,6 +680,25 @@
         if (e.key === 'Enter') tetrisOverlayAction();
     });
 
+    // ── Mobile Touch D-Pad wiring ─────────────────────────────
+    function wireTouch(id, action) {
+        const btn = document.getElementById(id);
+        if (!btn) return;
+        btn.addEventListener('pointerdown', e => {
+            e.preventDefault();
+            if (gameState !== 'playing') return;
+            gameFocused = true; // keep keyboard focus alive too
+            action();
+            render();
+        });
+    }
+    wireTouch('touch-left',     () => moveLeft());
+    wireTouch('touch-right',    () => moveRight());
+    wireTouch('touch-down',     () => softDrop());
+    wireTouch('touch-hard',     () => hardDrop());
+    wireTouch('touch-rotate',   () => tryRotate(true));
+    wireTouch('touch-hold-btn', () => holdAction());
+
     // ── Init ──────────────────────────────────────────────────
     initState();
     renderLeaderboard();
